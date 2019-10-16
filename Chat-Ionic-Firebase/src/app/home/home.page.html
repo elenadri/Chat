@@ -1,57 +1,30 @@
 <ion-header>
   <ion-toolbar color="tertiary">
-    <ion-button slot="end" fill="clear" routerLink="/perfil">
-      <ion-icon style="color:#fff" name="contact"></ion-icon>
+    <ion-button slot="end" fill="clear" (click)="presentActionSheet()">
+      <ion-icon style="color:#fff" name="menu"></ion-icon>
     </ion-button>
-    <ion-title> Chats </ion-title>
+    <ion-title>
+      Chats
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 
-
-
-      
-      <ion-item routerLink="/chat">
-        <ion-avatar    slot="start">
-          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-        </ion-avatar>
-        <ion-label>Item Avatar</ion-label>
-      </ion-item>
-
-      <ion-item routerLink="/chat">
-        <ion-avatar    slot="start">
-          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-        </ion-avatar>
-        <ion-label routerLink="/chat "> Item Avatar</ion-label>
-      </ion-item>
-
-      <ion-item routerLink="/chat">
-        <ion-avatar    slot="start">
-          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-        </ion-avatar>
-        <ion-label>Item Avatar</ion-label>
-      </ion-item>
-      
-
-      <ion-button  class="add"  color="primary"  routerLink="/perfil">
-        <ion-icon style="color:#f3f3f3" name="add-circle-outline"></ion-icon>
-      </ion-button>
- <!--<ion-list>
-      <ion-item *ngFor ="let chat of chatRooms" (click)="openChat(chat)">
+  <ion-list>
+      <ion-item *ngFor ="let chat of itensChat" >
         <ion-avatar slot="start">
-          <ion-img [src]="chat.img"></ion-img>
+          <ion-img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"></ion-img>
         </ion-avatar>
         <ion-label>
-          <h2> <b>nombre chat</b> </h2>
-          <p>descricion</p>
+          <h2> <b>{{chat.name}}</b></h2>
+          <p>{{chat.descripcion}}</p>
         </ion-label>
-      </ion-item>
-    
+      </ion-item>   
   </ion-list>
---> 
 
 
-<ion-button (click)="Onlogout()" >desconectarse</ion-button> 
+
+   <ion-button (click)="Onlogout()" >desconectarse</ion-button> 
 
 </ion-content>

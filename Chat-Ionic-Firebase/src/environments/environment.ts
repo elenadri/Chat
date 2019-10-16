@@ -7,14 +7,14 @@ export const environment = {
 };
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyBerMBP4f0yBidFq18l8ys50sPtGDqBZfQ",
-  authDomain: "chat-ionic-firebase-7b173.firebaseapp.com",
-  databaseURL: "https://chat-ionic-firebase-7b173.firebaseio.com",
-  projectId: "chat-ionic-firebase-7b173",
-  storageBucket: "chat-ionic-firebase-7b173.appspot.com",
-  messagingSenderId: "777393947680",
-  appId: "1:777393947680:web:ce0035355465ca5c696845",
-  measurementId: "G-8NPPYWFV56"
+  apiKey: "AIzaSyCttE5StT9cfhKJ5yy-viuV6h5G6mEpnw4",
+  authDomain: "chat-firebase-62c03.firebaseapp.com",
+  databaseURL: "https://chat-firebase-62c03.firebaseio.com",
+  projectId: "chat-firebase-62c03",
+  storageBucket: "chat-firebase-62c03.appspot.com",
+  messagingSenderId: "497715122435",
+  appId: "1:497715122435:web:4e43d6cbfe857a83681936",
+  measurementId: "G-EZWV5SMK47"
 };
 /*
  * For easier debugging in development mode, you can import the following file
