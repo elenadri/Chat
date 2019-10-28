@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="tertiary">
-    <ion-button slot="end" fill="clear" (click)="presentActionSheet()">
-      <ion-icon style="color:#fff" name="menu"></ion-icon>
+    <ion-button (click)="Onlogout()" float-right > 
+    <ion-icon name="log-out"></ion-icon>
     </ion-button>
     <ion-title>
       Chats
@@ -12,10 +12,10 @@
 <ion-content padding>
 
   <ion-list>
-      <ion-item *ngFor ="let chat of itensChat" >
+      <ion-item *ngFor ="let chat of itensChat" (click)="openChat(chat)">
         <ion-avatar slot="start">
-          <ion-img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"></ion-img>
-        </ion-avatar>
+            <ion-img [src]="chat.img"></ion-img>
+         </ion-avatar>
         <ion-label>
           <h2> <b>{{chat.name}}</b></h2>
           <p>{{chat.descripcion}}</p>
@@ -25,6 +25,5 @@
 
 
 
-   <ion-button (click)="Onlogout()" >desconectarse</ion-button> 
 
 </ion-content>

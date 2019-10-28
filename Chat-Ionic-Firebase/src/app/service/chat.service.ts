@@ -27,6 +27,8 @@ export class ChatService {
       })
     }))  }
 
-
+    getChat( chat_id : string){
+      return this.db.collection('chats').doc(chat_id).valueChanges()
+    }
   
 }
