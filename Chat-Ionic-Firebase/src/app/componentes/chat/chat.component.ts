@@ -38,4 +38,7 @@ export class ChatComponent implements OnInit {
     this.modal.dismiss()
   }
 
+
+  
+
 }
