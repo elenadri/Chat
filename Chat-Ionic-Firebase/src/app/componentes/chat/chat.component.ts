@@ -12,7 +12,10 @@ export class ChatComponent implements OnInit {
   public chat: any;
   // public message : message;
 
-  public messages = [];
+  public mesajes = [
+    'mensajee',
+    'mensagesd'
+  ];
 
   public room: any;
 
@@ -39,6 +42,10 @@ export class ChatComponent implements OnInit {
   }
 
 
+  sendMessage(){
+    this.mesajes.push(this.msg);
+    this.msg ='';
+  }
   
 
 }
