@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { ChatService } from '../service/chat.service';
-import { ModalController } from "@ionic/angular";
+import { ModalController, ActionSheetController } from "@ionic/angular";
 import { ChatComponent } from "../componentes/chat/chat.component";
 
 
@@ -15,7 +15,8 @@ import { ChatComponent } from "../componentes/chat/chat.component";
 export class HomePage implements OnInit {
 
   constructor( protected authservice: AuthService, public chatservice : ChatService,
-                private modal : ModalController) {}
+                private modal : ModalController, public actionSheetController: ActionSheetController,
+                ) {}
 
 Onlogout(){
     this.authservice.logout();
@@ -43,5 +44,21 @@ openChat(chats){
   }).then( (modal) => modal.present())
 }
 
+async presentActionSheet() {
+  const actionSheet = await this.actionSheetController.create({
+    header: 'Opciones',
+    buttons: [{
+      text: 'Desconectarse',
+      role: 'destructive',
+      icon: 'log-out',
+      handler: () => {
+        
+        this.Onlogout()
+
+      },
+    }]
+  });
+  await actionSheet.present();
+}
 
 }
