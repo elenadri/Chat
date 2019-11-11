@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavParams, ModalController } from "@ionic/angular";
 import { ChatService } from 'src/app/service/chat.service';
 
-export interface mensaje {
-  content : string
-  type : string
-  date : Date
-}
+import { Mensaje} from '../../model/mensajes';
+import { User } from '../../model/user';
 
 @Component({
   selector: 'app-chat',
@@ -17,11 +14,20 @@ export class ChatComponent implements OnInit {
 
   public chat: any;
 
-  public mensajes = []; //messages
+  public list: any;
+
+  public mensajes = [];
+
+  public mensaje: Mensaje;
 
   public room: any;
 
-  public msg : string;
+  public msg: string;
+
+  public myDate: String = new Date().toISOString();
+
+  public usuario: string;
+
   constructor(
     private navparams: NavParams, 
     private modal: ModalController,
@@ -29,30 +35,14 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
 
-    this.chatService.getChat( this.chat.id).subscribe( room => {
-      console.log(room);
-      this.room = room;
-    })
+     this.chat = this.navparams.get('chat');
 
-    this.chat = this.navparams.get('chat')
+     this.chatService.getChat(this.chat.id).subscribe(room => {
+       this.room = room;
+     });
   }
 
-  closeChat() {
-    this.modal.dismiss()
-  }
-
-  sendMessage(){
-
-    const mensaje : mensaje = {
-    content : this.msg,
-    type : 'text',
-    date : new Date()
-    }
-    
-  this.chatService.sendMsgToFirebase( mensaje, this.chat.id);
-  this.msg = "";
-  }
-
+  
   
 
 }
