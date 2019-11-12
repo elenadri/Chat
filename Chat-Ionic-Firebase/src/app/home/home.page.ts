@@ -3,6 +3,7 @@ import { AuthService } from '../service/auth.service';
 import { ChatService } from '../service/chat.service';
 import { ModalController, ActionSheetController } from "@ionic/angular";
 import { ChatComponent } from "../componentes/chat/chat.component";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -13,6 +14,12 @@ import { ChatComponent } from "../componentes/chat/chat.component";
 
 
 export class HomePage implements OnInit {
+  [x: string]: any;
+
+  public  name : string;
+  public  img : string;
+  public description : string;
+public id :string;
 
   constructor( protected authservice: AuthService, public chatservice : ChatService,
                 private modal : ModalController, public actionSheetController: ActionSheetController,
@@ -30,9 +37,20 @@ Onlogout(){
 ngOnInit(){
 this.chatservice.getChats().subscribe( chat => {
   this.itensChat = chat;
+  this.chat = this.navparams.get('chat');
+
 })
 
 }
+
+
+addChat(){
+  
+  this.chatservice.addChat( this.chat.id,this.name, this.description, this.img);
+  
+}
+
+
 
 openChat(chats){
 

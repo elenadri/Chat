@@ -11,21 +11,31 @@
   </ion-header>
 
 
- 
-  <div *ngIf="room">
-      <ion-card *ngFor="let mensaje of room.messages">
+  <ion-content [scrollEvents]="true">
+    <div *ngIf="room">
+  
+      <ion-card *ngFor="let mensaje of room.mensajes.slice().reverse()">
+        <ion-item>
+          <ion-label>{{mensaje.usuario}}</ion-label>
+        </ion-item>
+  
         <ion-card-content>
-          {{mensaje.content}}
+          {{mensaje.contenido}}
         </ion-card-content>
       </ion-card>
+  
     </div>
+  </ion-content>
   
-  
-  <ion-footer padding>
+  <ion-footer class="ion-padding">
     <ion-item>
-      <ion-textarea [(ngModel)]="msg"></ion-textarea>
-        <ion-button color="success"(click)="sendMessage()">
+  
+      <ion-textarea [(ngModel)]="msg">
+      </ion-textarea>
+  
+      <ion-button class="ion-button-size" (click)="EnviarMensajeFirebase()">
         <ion-icon name="send"></ion-icon>
       </ion-button>
+  
     </ion-item>
   </ion-footer>

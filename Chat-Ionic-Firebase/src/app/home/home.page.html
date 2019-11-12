@@ -6,10 +6,13 @@
     <ion-title>
       Chats
     </ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  <a  class="a" routerLink="/add-chat">Crear cuenta</a>
+
 
   <ion-list>
       <ion-item *ngFor ="let chat of itensChat" (click)="openChat(chat)">

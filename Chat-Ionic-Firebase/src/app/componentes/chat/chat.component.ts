@@ -21,12 +21,13 @@ export class ChatComponent implements OnInit {
   public mensaje: Mensaje;
 
   public room: any;
+  public roo: any;
 
   public msg: string;
 
   public myDate: String = new Date().toISOString();
 
-  public usuario: string;
+  public usuario: any;
 
   constructor(
     private navparams: NavParams, 
@@ -35,14 +36,42 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
 
-     this.chat = this.navparams.get('chat');
+    this.chat = this.navparams.get('chat');
+    this.usuario = this.navparams.get('usuario');
 
      this.chatService.getChat(this.chat.id).subscribe(room => {
        this.room = room;
      });
+
+     this.chatService.getChatUser(this.usuario.name).subscribe(roo => {
+      this.roo = roo;
+    });
+    
   }
 
-  
+
+  EnviarMensajeFirebase() {
+
+    const mensaje: Mensaje = {
+      usuario: this.usuario.name,
+      contenido: this.msg,
+      tipo: 'text',
+      fecha: new Date().toISOString()
+    }
+
+    this.chatService.enviarMensajeFirebase(mensaje, this.chat.id,this.usuario.name);
+    this.msg = "";
+  }
+
+
+  EnviarMensaje() {
+    this.mensajes.push(this.mensaje);
+  }
+
+  closeChat() {
+    this.modal.dismiss();
+  }
+
   
 
 }

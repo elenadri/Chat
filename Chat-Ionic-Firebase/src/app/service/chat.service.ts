@@ -43,9 +43,27 @@ export class ChatService {
     return this.db.collection('Usuarios').doc(user_id).valueChanges();
   }
 
-  enviarMensajeFirebase(mensaje: Mensaje, chat_id: string) {
+  enviarMensajeFirebase(mensaje: Mensaje, chat_id: string, user_id: string) {
     this.db.collection('ChatRooms').doc(chat_id).update({
       mensajes: firestore.FieldValue.arrayUnion(mensaje),
+      user: firestore.FieldValue.arrayUnion(user_id),
     });
-  }
+
+
+  } 
+
+
+  addChat(description: string, chat_id : string, img : string, name : string){
+    this.db.collection('ChatRooms').doc(chat_id).set({
+      description : description,
+      imag: img,
+      name: name
+    });
+
+
+  } 
+
+
+
+
 }
