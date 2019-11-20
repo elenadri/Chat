@@ -14,10 +14,6 @@
   <ion-content [scrollEvents]="true">
     <div *ngIf="room">
   
-      <ion-card *ngFor="let mensaje of room.mensajes.slice().reverse()">
-        <ion-item>
-          <ion-label>{{mensaje.usuario}}</ion-label>
-        </ion-item>
   
         <ion-card-content>
           {{mensaje.contenido}}

@@ -35,7 +35,7 @@ Onlogout(){
 
 
 ngOnInit(){
-this.chatservice.getChats().subscribe( chat => {
+this.chatservice.getChatRooms().subscribe( chat => {
   this.itensChat = chat;
   this.chat = this.navparams.get('chat');
 
@@ -44,11 +44,7 @@ this.chatservice.getChats().subscribe( chat => {
 }
 
 
-addChat(){
-  
-  this.chatservice.addChat( this.chat.id,this.name, this.description, this.img);
-  
-}
+
 
 
 
