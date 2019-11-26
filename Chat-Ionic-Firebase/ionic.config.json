@@ -1,8 +1,14 @@
 {
+<<<<<<< HEAD
   "name": "Chat-Ionic",
   "integrations": {
     "cordova": {},
     "capacitor": {}
+=======
+  "name": "Chat-Ionic-Firebase",
+  "integrations": {
+    "cordova": {}
+>>>>>>> ebd71c5744e3d157edf6d3189261468a7b444f94
   },
   "type": "angular"
 }

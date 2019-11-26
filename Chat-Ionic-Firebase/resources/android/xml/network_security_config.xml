@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
+<<<<<<< HEAD
         <domain>localhost</domain>
+=======
+        <domain includeSubdomains="true">localhost</domain>
+>>>>>>> ebd71c5744e3d157edf6d3189261468a7b444f94
     </domain-config>
 </network-security-config>
