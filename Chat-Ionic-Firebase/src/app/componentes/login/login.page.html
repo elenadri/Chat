@@ -1,19 +1,37 @@
 <ion-header>
+  <!-- PONEMOS COLOR AL TOOLBAR PARA QUE SE SINCRIONICE CON EL BOTON -->
+  <ion-toolbar>  </ion-toolbar>
 
 </ion-header>
 
-<ion-content class="fondo">
-  <ion-content padding>
-    <img class="icon" src="assets/icon/ico.png" alt="">
-  <ion-item >
+
+<ion-content>
+
+  <!-- AGREGAMOS UNA IMAGEN AL TOP -->
+  <img class="login-icon" src="../../../assets/icon/favicon.png" alt="">
+  <!-- ION ITEM POR CADA INPUT -->
+
+  <ion-item>
+    <ion-label position="floating">Correo electronico</ion-label>
     <ion-input type="text" [(ngModel)]="email" name="email"></ion-input>
   </ion-item>
+
   <ion-item>
-    <ion-input [(ngModel)]="password" type="password" name="password"></ion-input>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
   </ion-item>
-  <br>
-  <ion-button (click)="onSubmitLogin()" expand="block">Entrar</ion-button>
-  <br>
-  <a  class="a" routerLink="/registro">Crear cuenta</a>
+
+  <p>
+    <ion-button class="new-background-login" (click)="OnClickedIniciarSesion()" expand="block">
+      Ingresar
+    </ion-button>
+  </p>
+
+  <p>
+
+    <ion-button class="new-background-register" [routerLink]="['/registro']" routerLinkActive="router-link-active" expand="block">
+      Registrate
+    </ion-button>
+  </p>
 
 </ion-content>

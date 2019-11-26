@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../service/auth.service';
-import { ChatService } from '../service/chat.service';
-import { ModalController, ActionSheetController } from "@ionic/angular";
-import { ChatComponent } from "../componentes/chat/chat.component";
-import { Router } from "@angular/router";
+import { AuthService } from '../servicios/auth.service';
+import { ChatsService } from "../servicios/chats.service";
+import { ModalController, ActionSheetController, AlertController } from '@ionic/angular';
+import { ChatComponent } from '../componentes/chat/chat.component';
 
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'app-home',
@@ -12,71 +12,95 @@ import { Router } from "@angular/router";
   styleUrls: ['home.page.scss'],
 })
 
-
 export class HomePage implements OnInit {
+
   [x: string]: any;
+  public chatRooms: any = [];
+  public users: any = [];
 
-  public  name : string;
-  public  img : string;
-  public description : string;
-public id :string;
+  constructor(private AService: AuthService,
+    public chatservice: ChatsService,
+    private modal: ModalController,
+    public actionSheetController: ActionSheetController,
+    public alertController: AlertController,
+    private statusBar: StatusBar) { }
 
-  constructor( protected authservice: AuthService, public chatservice : ChatService,
-                private modal : ModalController, public actionSheetController: ActionSheetController,
-                ) {}
 
-Onlogout(){
-    this.authservice.logout();
+  ngOnInit() {
+
+    this.statusBar.styleBlackTranslucent();
+    this.statusBar.backgroundColorByHexString('#075E54');
+    this.chatservice.getChatRooms().subscribe(
+      chats => {
+        this.chatRooms = chats;
+      }
+    );
+
+    this.chatservice.getChatUsers().subscribe(
+      users => {
+        this.users = users;
+        console.log(this.users);
+      }
+    );
 
   }
 
-  public itensChat :any = [];
+  OnClickedSalir() {
+    this.AService.salir();
+  }
 
+  onClickedOpenChat(chat) {
 
+    this.modal.create(
+      {
+        component: ChatComponent,
+        componentProps: {
+          chat: chat
+        }
+      }
+    ).then(modal => modal.present())
+  }
 
-ngOnInit(){
-this.chatservice.getChats().subscribe( chat => {
-  this.itensChat = chat;
-  this.chat = this.navparams.get('chat');
+  async showAlertCerrar() {
+    const alert = await this.alertController.create({
+      header: '¡Alerta!',
+      message: 'Se ha cerrado sesión con éxito.',
+      buttons: ['OK']
+    });
 
-})
+    await alert.present();
+  }
 
-}
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Opciones',
+      buttons: [
 
+        {
+          text: 'Cerrar sesión',
+          icon: 'log-out',
+          role: 'destructive',
 
-addChat(){
+          handler: () => {
+            this.OnClickedSalir();
+            this.showAlertCerrar();
+          }
+        },
+
+        {
+          text: 'Cancel',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+          }
+        }
+
+      ]
+
+    });
+    await actionSheet.present();
+  }
+
   
-  this.chatservice.addChat( this.chat.id,this.name, this.description, this.img);
-  
-}
-
-
-
-openChat(chats){
-
-  this.modal.create({
-    component: ChatComponent,
-    componentProps : {
-      chat: chats
-    }
-  }).then( (modal) => modal.present())
-}
-
-async presentActionSheet() {
-  const actionSheet = await this.actionSheetController.create({
-    header: 'Opciones',
-    buttons: [{
-      text: 'Desconectarse',
-      role: 'destructive',
-      icon: 'log-out',
-      handler: () => {
-        
-        this.Onlogout()
-
-      },
-    }]
-  });
-  await actionSheet.present();
-}
 
 }

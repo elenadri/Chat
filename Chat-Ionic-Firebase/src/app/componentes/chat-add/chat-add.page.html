@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <img class="login-icon" src="../../../assets/icon/favicon.png" alt="">
+
+
+  <ion-item>
+    <ion-label position="floating">Nome</ion-label>
+    <ion-input [(ngModel)]="name" type="text" name="name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">descripcion</ion-label>
+    <ion-input [(ngModel)]="description" type="text" name="description"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="floating">Id</ion-label>
+    <ion-input [(ngModel)]="id" type="text" name="id"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Img</ion-label>
+    <ion-input [(ngModel)]="img" type="file" name="img"></ion-input>
+  </ion-item>
+
+
+
+    <ion-button (click)="onClickedRegistrar()" expand="block" class="new-background-register">
+      Nuevo Chat</ion-button>
+
+
+
+</ion-content>

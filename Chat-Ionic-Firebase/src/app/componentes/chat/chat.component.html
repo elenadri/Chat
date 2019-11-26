@@ -1,41 +1,50 @@
- <ion-header>
-    <ion-toolbar color="tertiary">
-      <ion-button slot="start" fill="clear" (click)="closeChat()">
-        <ion-icon style="color:#fff; font-size: 25px" name="arrow-round-back"></ion-icon>
-      </ion-button>
-      <ion-avatar slot="start">
-          <ion-img [src]="chat.img" ></ion-img>
-       </ion-avatar>
-      <ion-title  float-right >{{chat.name}}  </ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-header>
+  <ion-toolbar color="primary">
+
+    <ion-button slot="start" fill="clear" color="light" (click)="onClickedCerrar()">
+      <ion-icon name="arrow-round-back"></ion-icon>
+    </ion-button>
+
+    <ion-avatar slot="start">
+      <ion-img [src]="chat.img"></ion-img>
+    </ion-avatar>
+
+    <ion-title style="color: white;">
+      {{chat.name}}
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
 
 
-  <ion-content [scrollEvents]="true">
-    <div *ngIf="room">
-  
-      <ion-card *ngFor="let mensaje of room.mensajes.slice().reverse()">
-        <ion-item>
-          <ion-label>{{mensaje.usuario}}</ion-label>
-        </ion-item>
-  
-        <ion-card-content>
-          {{mensaje.contenido}}
-        </ion-card-content>
-      </ion-card>
-  
-    </div>
-  </ion-content>
-  
-  <ion-footer class="ion-padding">
-    <ion-item>
-  
-      <ion-textarea [(ngModel)]="msg">
-      </ion-textarea>
-  
-      <ion-button class="ion-button-size" (click)="EnviarMensajeFirebase()">
-        <ion-icon name="send"></ion-icon>
-      </ion-button>
-  
-    </ion-item>
-  </ion-footer>
+
+<ion-content [scrollEvents]="true">
+  <div *ngIf="room">
+
+    <ion-card *ngFor="let mensaje of room.mensajes.slice().reverse()">
+      <ion-item>
+        <ion-label>{{mensaje.usuario}}</ion-label>
+        <ion-datetime id="dynamicDisabled" displayFormat="D MMM YYYY H:mm" disabled [(ngModel)]="mensaje.fecha">
+        </ion-datetime>
+      </ion-item>
+
+      <ion-card-content>
+        {{mensaje.contenido}}
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>
+
+<ion-footer class="ion-padding">
+  <ion-item>
+
+    <ion-textarea [(ngModel)]="msg">
+    </ion-textarea>
+
+    <ion-button class="ion-button-size" (click)="onClickedEnviarMensajeFirebase()">
+      <ion-icon name="send"></ion-icon>
+    </ion-button>
+
+  </ion-item>
+</ion-footer>

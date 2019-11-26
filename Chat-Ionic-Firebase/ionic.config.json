@@ -1,5 +1,8 @@
 {
-  "name": "Chat-Ionic-Firebase",
-  "integrations": {},
+  "name": "Chat-Ionic",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }

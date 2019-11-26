@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './guard/auth.guard';
-import { NoLoginGuard } from './guard/nologin.guard'
+import { AuthGuard } from './guards/auth.guard';
+import { NologinGuard } from './guards/nologin.guard';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),canActivate:[AuthGuard]},
-  { path: 'login', loadChildren: './componentes/login/login.module#LoginPageModule', canActivate : [NoLoginGuard] },
-  { path: 'registro', loadChildren: './componentes/registro/registro.module#RegistroPageModule' },
-  { path: 'add-chat', loadChildren: './componentes/add-chat/add-chat.module#AddChatPageModule' },
-
+  // QUIERO QUE EL GUARD SE ACTIVE EN HOME y LOGIN
+  { path: 'home', loadChildren: './home/home.module#HomePageModule', canActivate: [AuthGuard] },
+  { path: 'login', loadChildren: './componentes/login/login.module#LoginPageModule', canActivate: [NologinGuard] },
+  { path: 'registro', loadChildren: './componentes/registro/registro.module#RegistroPageModule', canActivate: [NologinGuard] },
+  { path: 'chat-add', loadChildren: './componentes/chat-add/chat-add.module#ChatAddPageModule' },
 ];
 
 @NgModule({
