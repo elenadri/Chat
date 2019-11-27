@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: './componentes/login/login.module#LoginPageModule', canActivate: [NologinGuard] },
   { path: 'registro', loadChildren: './componentes/registro/registro.module#RegistroPageModule', canActivate: [NologinGuard] },
   { path: 'chat-add', loadChildren: './componentes/chat-add/chat-add.module#ChatAddPageModule' },
+  { path: 'chat-add-image', loadChildren: './componentes/chat-add-image/chat-add-image.module#ChatAddImagePageModule' },
 ];
 
 @NgModule({

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, ActionSheetController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ChatsService } from 'src/app/servicios/chats.service';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-chat-add',
@@ -11,39 +12,29 @@ import { ChatsService } from 'src/app/servicios/chats.service';
 export class ChatAddPage implements OnInit {
   public name: string;
   public description: string;
-  public img: string;
-  public id: string;
-  attachment: File = null;
+  public id = this.afs.createId();
 
+ 
   constructor(
     private chats: ChatsService,
     private router: Router,
     public actionSheetController: ActionSheetController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private afs: AngularFirestore,
     ){ }
 
   ngOnInit() {
   }
 
 
-  attachFile(e){
-    if (e.target.files.length == 0) {
-      console.log("No file selected!");
-      return
-    }
-    let file: File = e.target.files[0];
-    console.log(file);
-    this.attachment = file;
-  }
-
 
   onClickedRegistrar() {
-    this.chats.Chatadd(this.name,this.description, this.img, this.id).then(chats => {
+    this.chats.Chatadd(this.name,this.description, this.id).then(chats => {
       this.showAlert("Registrado", "El usuario se ha creado con éxito.");
       this.router.navigate(['/home']);
       console.log(chats);
     }).catch(err => {
-      this.showAlert("¡Usuario existente!", "El correo está registrado.");
+      this.showAlert("Chat existente!", "El Chat está registrado.");
     })
   }
 

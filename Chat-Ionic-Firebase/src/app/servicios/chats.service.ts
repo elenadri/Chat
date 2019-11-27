@@ -49,13 +49,10 @@ export class ChatsService {
   }
 
 // ADD CHAT
-Chatadd(name:string,description: string, img: string,id: string) {
+Chatadd(name:string,description: string,id: string) {
     return this.db.collection('ChatRooms').doc(id).set({
-      chat_id: id,
       description: description,
-      name: name,
-      img: img,
-
+      name: name
     });
   }
 
